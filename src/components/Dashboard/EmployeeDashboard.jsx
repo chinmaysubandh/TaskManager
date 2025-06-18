@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
-import { Header } from '../ohters/Header'
-import { TasksListStats } from '../ohters/TasksListStats'
+import { Header } from '../others/Header'
+import { TasksListStats } from '../others/TasksListStats'
 import { TaskLists } from '../TaskList/TaskLists'
 
 export const EmployeeDashboard = () => {
@@ -11,13 +11,13 @@ export const EmployeeDashboard = () => {
       .then((JSON) => {
         setDataset(JSON)
       })
-  },[])
-  
+  }, [])
+
   return (
     <div className=' p-10 bg-[#111] h-screen '>
       <Header />
       <TasksListStats />
-      <TaskLists/>
+      <TaskLists />
     </div>
   )
 }

@@ -15,7 +15,7 @@ export const Login = () => {
     }
   return (
       <div className='flex items-center justify-center h-screen w-screen'>
-          <div className='border-2 border-emerald-600 rounded-2xl  bg-gray-800 '>
+          <div className='border-2 border-emerald-600 rounded-2xl px-20 py-18  bg-gray-800 '>
               <form
                   
                   onSubmit={(e) => {
