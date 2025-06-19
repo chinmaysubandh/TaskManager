@@ -5,7 +5,8 @@ import { AllTasks } from '../others/AllTasks'
 
 export const AdminDashboard = () => {
   return (
-    <div className='h-screen w-full p-10'>
+    <div className='h-screen w-full p-10 text-white'>
+      <h1>Admin login</h1>
       <Header />
       <CreateTask />
       <AllTasks />

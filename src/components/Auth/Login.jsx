@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 
-export const Login = () => {
+export const Login = ({ handleLogin }) => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
 
@@ -9,6 +9,7 @@ export const Login = () => {
         e.preventDefault()
         console.log("Your Email is ", email)
         console.log("Your Password is ", password)
+        handleLogin(email,password);
         
         setEmail('')
         setPassword('')

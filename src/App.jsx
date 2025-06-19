@@ -8,21 +8,31 @@ import { AdminDashboard } from "./components/Dashboard/AdminDashboard";
 import { getLocalStorage, setLocalStorage } from "./utils/LocalStorage";
 
 function App() {
-  const [count, setCount] = useState(0);
-  
-
-  useEffect(() => {
-    setLocalStorage();
-    console.log(getLocalStorage());
-  },)
+  const [user, setUser] = useState(null);
+  const handleLogin = (email,password) => {
+    if (email == 'admin@example.com' && password == '123') {
+      console.log("Admin Login");
+      setUser('admin')
+      
+    }
+    else if (email == 'employee@example.com' && password == '123') {
+      console.log("Employee login ");
+      setUser('employee')
+      
+    } else {
+      alert("Invalid Credentials");
+      
+    }
+    
+  } 
   
 
   return (
-    <>
-      <Login />
-      {/* <EmployeeDashboard /> */}
-      {/* <AdminDashboard /> */}
-    </>
+    <div>
+      {!user ? <Login handleLogin={handleLogin} /> : ''}
+      {user == 'admin' && <AdminDashboard />}
+      {user == 'employee' && <EmployeeDashboard/>}
+    </div>
   );
 }
 
