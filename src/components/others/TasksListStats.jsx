@@ -1,6 +1,6 @@
 import React from 'react'
 
-export const TasksListStats = () => {
+export const TasksListStats = ({data}) => {
     let num = Math.floor(Math.random() * 10);
     
   return (

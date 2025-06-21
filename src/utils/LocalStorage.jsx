@@ -1,8 +1,15 @@
 const employees = [
     {
         id: 1,
+        name: "Rahul Sharma",
         email: "employee1@example.com",
         password: "123",
+        taskcounts: { // Existing taskcounts for employee 1
+            "active": 2,
+            "newTask": 1,
+            "completed": 1,
+            "failed": 2
+        },
         tasks: [
             {
                 status: true,
@@ -38,8 +45,15 @@ const employees = [
     },
     {
         id: 2,
+        name: "Priya Singh",
         email: "employee2@example.com",
         password: "123",
+        taskcounts: { // Added taskcounts for employee 2
+            "active": 2, // e.g., "Write Blog Post", "Client Meeting"
+            "newTask": 2, // e.g., "Write Blog Post", "Client Meeting"
+            "completed": 2, // e.g., "Create Logo"
+            "failed": 1 // e.g., "Database Backup"
+        },
         tasks: [
             {
                 status: true,
@@ -85,8 +99,15 @@ const employees = [
     },
     {
         id: 3,
+        name: "Amit Patel",
         email: "employee3@example.com",
         password: "123",
+        taskcounts: { // Added taskcounts for employee 3
+            "active": 3, // e.g., "Optimize Images", "Deploy App", "Mobile Optimization"
+            "newTask": 1, // e.g., "Deploy App"
+            "completed": 2, // e.g., "Write Test Cases", "Security Audit"
+            "failed": 2 // e.g., "Optimize Images", "Mobile Optimization"
+        },
         tasks: [
             {
                 status: true,
@@ -142,8 +163,15 @@ const employees = [
     },
     {
         id: 4,
+        name: "Sneha Devi",
         email: "employee4@example.com",
         password: "123",
+        taskcounts: { // Added taskcounts for employee 4
+            "active": 2, // e.g., "SEO Analysis", "Campaign Setup"
+            "newTask": 1, // e.g., "SEO Analysis"
+            "completed": 1, // e.g., "Internal Survey"
+            "failed": 1 // e.g., "Campaign Setup"
+        },
         tasks: [
             {
                 status: true,
@@ -179,8 +207,15 @@ const employees = [
     },
     {
         id: 5,
+        name: "Vikram Kumar",
         email: "employee5@example.com",
         password: "123",
+        taskcounts: { // Added taskcounts for employee 5
+            "active": 2, // e.g., "Conduct Interview", "Feedback Analysis"
+            "newTask": 2, // e.g., "Conduct Interview", "Feedback Analysis"
+            "completed": 1, // e.g., "Performance Review"
+            "failed": 1 // e.g., "Budget Planning"
+        },
         tasks: [
             {
                 status: true,
@@ -229,8 +264,15 @@ const employees = [
 const admin = [
     {
         id: 100,
+        name: "Anjali Gupta",
         email: "admin@example.com",
         password: "123"
+    },
+    {
+        id: 101,
+        name: "Chinmay Joshi",
+        email: "adminchinmay@gmail.com",
+        password: "123456"
     }
 ];
 
@@ -241,9 +283,9 @@ export const setLocalStorage = () => {
 }
 
 export const getLocalStorage = () => {
-    const EmployeeData = JSON.parse(localStorage.getItem('employees'));
-    const AdminData = JSON.parse(localStorage.getItem('admin'));
-    
-    return {EmployeeData,AdminData};
-    
+    const employees = JSON.parse(localStorage.getItem('employees'));
+    const admin = JSON.parse(localStorage.getItem('admin'));
+
+    return { employees, admin };
+
 }

@@ -3,8 +3,9 @@ import { Header } from '../others/Header'
 import { TasksListStats } from '../others/TasksListStats'
 import { TaskLists } from '../TaskList/TaskLists'
 
-export const EmployeeDashboard = () => {
+export const EmployeeDashboard = ({data}) => {
   const [dataset, setDataset] = useState([])
+  
   useEffect(() => {
     fetch('https://679a55e3747b09cdccce8867.mockapi.io/Todo')
       .then((res) => res.json())
@@ -15,10 +16,11 @@ export const EmployeeDashboard = () => {
 
   return (
     <div className=' p-10 bg-[#111] h-screen '>
-      
-      <Header />
-      <TasksListStats />
-      <TaskLists />
+      <h1>{data.id}</h1>
+
+      <Header data={data} />
+      <TasksListStats data={data} />
+      <TaskLists data={data} />
     </div>
   )
 }
