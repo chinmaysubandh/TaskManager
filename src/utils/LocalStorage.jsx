@@ -2,7 +2,7 @@ const employees = [
     {
         id: 1,
         name: "Rahul Sharma",
-        email: "employee1@example.com",
+        email: "rahul@gmail.com",
         password: "123",
         taskcounts: { // Existing taskcounts for employee 1
             "active": 2,
@@ -94,6 +94,57 @@ const employees = [
                 description: "Attend meeting with prospective clients.",
                 date: "2025-06-19",
                 category: "Meetings"
+            },
+            // 🔻 5 Additional Failed Tasks
+            {
+                status: false,
+                newTask: false,
+                completed: false,
+                failed: true,
+                title: "Email Newsletter",
+                description: "Create and send the monthly newsletter.",
+                date: "2025-06-13",
+                category: "Marketing"
+            },
+            {
+                status: false,
+                newTask: false,
+                completed: false,
+                failed: true,
+                title: "Update Privacy Policy",
+                description: "Revise the company's privacy policy document.",
+                date: "2025-06-12",
+                category: "Legal"
+            },
+            {
+                status: false,
+                newTask: false,
+                completed: false,
+                failed: true,
+                title: "Team Onboarding",
+                description: "Prepare onboarding materials for new hires.",
+                date: "2025-06-11",
+                category: "HR"
+            },
+            {
+                status: false,
+                newTask: false,
+                completed: false,
+                failed: true,
+                title: "Internal Audit",
+                description: "Conduct an internal audit of all departments.",
+                date: "2025-06-10",
+                category: "Audit"
+            },
+            {
+                status: false,
+                newTask: false,
+                completed: false,
+                failed: true,
+                title: "System Upgrade",
+                description: "Upgrade all systems to the latest OS version.",
+                date: "2025-06-09",
+                category: "IT"
             }
         ]
     },
