@@ -14,13 +14,14 @@ function App() {
   const AuthData = useContext(AuthContext);
 
   useEffect(() => {
+    const loggedInUser = localStorage.getItem("loggedInUser")
+    if (loggedInUser) {
+      const userData = JSON.parse(loggedInUser);
+      setUser(userData.role);
+      setLoggedInUser(userData.data)
 
-    if (AuthData) {
-      const loggedInUser = localStorage.getItem("loggedInUser")
-      if (loggedInUser) {
-        setUser(loggedInUser.role)
-      }
     }
+
   }, [AuthData])
 
 
@@ -38,7 +39,7 @@ function App() {
       if (employee) {
         setUser('employee')
         setLoggedInUser(employee);
-        localStorage.setItem('loggedInUser', JSON.stringify({ role: 'employee' }))
+        localStorage.setItem('loggedInUser', JSON.stringify({ role: 'employee', data: employee }))
       }
 
 

@@ -5,6 +5,8 @@ import { TaskLists } from '../TaskList/TaskLists'
 
 export const EmployeeDashboard = ({data}) => {
   const [dataset, setDataset] = useState([])
+  console.log(data);
+  
   
   useEffect(() => {
     fetch('https://679a55e3747b09cdccce8867.mockapi.io/Todo')
@@ -16,7 +18,7 @@ export const EmployeeDashboard = ({data}) => {
 
   return (
     <div className=' p-10 bg-[#111] h-screen '>
-      <h1>{data.id}</h1>
+      
 
       <Header data={data} />
       <TasksListStats data={data} />

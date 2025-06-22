@@ -5,6 +5,7 @@ export const AuthContext = createContext();
 
 const AuthProvider = React.memo(({ children }) => {
   const [userData, setUserData] = useState([]);
+  
 
   useEffect(() => {
     setLocalStorage();
