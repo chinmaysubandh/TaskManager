@@ -7,6 +7,7 @@ import { EmployeeDashboard } from "./components/Dashboard/EmployeeDashboard";
 import { AdminDashboard } from "./components/Dashboard/AdminDashboard";
 import { getLocalStorage, setLocalStorage } from "./utils/LocalStorage";
 import { AuthContext } from "./context/AuthProvider";
+import { data } from "react-router-dom";
 
 function App() {
   const [user, setUser] = useState(null);
@@ -28,9 +29,10 @@ function App() {
 
   const handleLogin = (email, password) => {
     if (AuthData && AuthData.admin.find((e) => e.email == email && e.password == password)) {
+      const admin=AuthData.admin.find((e)=>e.email == email && e.password == password)
 
       setUser({ role: 'admin' })
-      localStorage.setItem('loggedInUser', JSON.stringify({ role: 'admin' }))
+      localStorage.setItem('loggedInUser', JSON.stringify({ role: 'admin', data: admin }))
 
     }
     else if (AuthData) {
@@ -52,10 +54,10 @@ function App() {
 
 
   return (
-    <div>
-      {!user ? <Login handleLogin={handleLogin} /> : ''}
-      {user == 'admin' && <AdminDashboard />}
-      {user == 'employee' && <EmployeeDashboard data={loggedInUser} />}
+    <div className="my-0">
+      {user === null && <Login handleLogin={handleLogin} /> }
+      {user === 'admin' && loggedInUser && <AdminDashboard />}
+      {user === 'employee' && loggedInUser && <EmployeeDashboard data={loggedInUser} />}
     </div>
   );
 }

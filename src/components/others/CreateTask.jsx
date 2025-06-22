@@ -2,8 +2,8 @@ import React from 'react'
 
 export const CreateTask = () => {
   return (
-    <div className='p-5 mt-7 rounded'>
-        <form className='flex flex-wrap w-full bg-transparent items-start justify-between p-5' >
+    <div className=' px-4 rounded'>
+        <form className='flex flex-wrap w-full bg-transparent items-start justify-between pt-2 ' >
           <div className='w-1/2'>
             <div >
             <h3 className='text-sm text-gray-300  m-0.5'>Task Title</h3>

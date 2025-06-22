@@ -4,7 +4,7 @@ const CompleteTask = ({data}) => {
   return (
         <div className='h-full w-[300px] bg-green-900 rounded-xl shrink-0 '>
             <div className='flex justify-between items-center mt-4 m-4'>
-                <h2 className='bg-red-600  rounded-2xl py-1 px-5 text-sm font-medium'>Category: {data.category}</h2>
+                <h2 className='bg-red-600  rounded-2xl py-1 px-5 text-sm font-medium'>{data.category}</h2>
                 <h4 className='text-sm font-medium'>{data.date}</h4>
             </div>
             <div className='m-4 gap-3  items-center  text-2xl font-medium text-blue-950'>
