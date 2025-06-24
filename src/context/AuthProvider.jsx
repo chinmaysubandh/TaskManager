@@ -10,6 +10,7 @@ const AuthProvider = React.memo(({ children }) => {
   useEffect(() => {
 
     setLocalStorage();
+    /* localStorage.clear(); */
     const { employees, admin } = getLocalStorage();
     setUserData({ employees, admin });
   }, [])

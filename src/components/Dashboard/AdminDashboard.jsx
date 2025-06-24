@@ -3,13 +3,13 @@ import { Header } from '../others/Header'
 import { CreateTask } from '../others/CreateTask'
 import { AllTasks } from '../others/AllTasks'
 
-export const AdminDashboard = ({data,changeUser}) => {
+export const AdminDashboard = (props) => {
 
 
   return (
     <div className='h-screen w-full p-10 text-white'>
 
-      <Header changeUser={changeUser} data={data} />
+      <Header changeUser={props.changeUser} data={props.data} />
       <CreateTask />
       <AllTasks />
     </div>

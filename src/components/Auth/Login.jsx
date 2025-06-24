@@ -21,6 +21,7 @@ export const Login = ({ handleLogin }) => {
 
                     onSubmit={(e) => {
                         Submithandler(e)
+                        window.location.reload();
                     }}
                     className='flex flex-col items-center justify-center'>
                     <h3 className='text-4xl text-cyan-600  font-extrabold transition-transform mt-5 mb-10'>Welcome back<span className='text-3xl font-extrabold text-emerald-500'>..</span></h3>
