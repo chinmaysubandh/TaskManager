@@ -28,8 +28,8 @@ function App() {
 
 
   const handleLogin = (email, password) => {
-    if (AuthData && AuthData.admin.find((e) => e.email == email && e.password == password)) {
-      const admin=AuthData.admin.find((e)=>e.email == email && e.password == password)
+    if (AuthData) {
+      const admin = AuthData.admin.find((e) => e.email == email && e.password == password)
 
       setUser({ role: 'admin' })
       localStorage.setItem('loggedInUser', JSON.stringify({ role: 'admin', data: admin }))
@@ -53,11 +53,14 @@ function App() {
   }
 
 
+
   return (
     <div className="my-0">
-      {user === null && <Login handleLogin={handleLogin} /> }
-      {user === 'admin' && loggedInUser && <AdminDashboard />}
-      {user === 'employee' && loggedInUser && <EmployeeDashboard data={loggedInUser} />}
+      {user === null && <Login handleLogin={handleLogin} />}
+      {user === 'admin' ? <AdminDashboard changeUser={setUser} data={loggedInUser} /> : (user === 'employee' ? <EmployeeDashboard changeUser={setUser} data={loggedInUser} /> : '')}
+      {/* {user === 'employee' && loggedInUser && <EmployeeDashboard changeUser={setUser} data={loggedInUser} />}
+      {user === 'admin' && loggedInUser && <AdminDashboard changeUser={setUser} data={loggedInUser} />}
+       */}
     </div>
   );
 }
