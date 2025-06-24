@@ -21,6 +21,7 @@ export const Login = ({ handleLogin }) => {
 
                     onSubmit={(e) => {
                         Submithandler(e)
+                        localStorage.getItem('employees')
                         window.location.reload();
                     }}
                     className='flex flex-col items-center justify-center'>
