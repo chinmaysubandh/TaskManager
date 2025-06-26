@@ -1,98 +1,113 @@
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react';
+import { AuthContext } from '../../context/AuthProvider';
 
 export const CreateTask = () => {
-
-  const [title, setTaskTitle] = useState('');
-  const [description, setTaskDescription] = useState('');
+  const [userData, setUserData] = useContext(AuthContext);
+  const [title, setTitle] = useState('');
+  const [description, setDescription] = useState('');
   const [taskDate, setTaskDate] = useState('');
-  const [asignTo, setAsignTo] = useState('');
+  const [assignTo, setAssignTo] = useState('');
   const [category, setCategory] = useState('');
 
-  const [newTasks, setNewTasks] = useState({})
+  const handleSubmit = (e) => {
+    e.preventDefault();
 
+    const newTask = {
+      title,
+      description,
+      taskDate,
+      assignTo,
+      category,
+      active: false,
+      status: true,
+      newTask: true,
+      completed: false,
+      failed: false,
+    };
 
-
-  const SubmitHandler = (e) => {
-    e.preventDefault()
-    setNewTasks({ title, description, taskDate, asignTo, category, active: false, status:true, newTask: true, completed: false, failed: false })
-    const data = JSON.parse(localStorage.getItem('employees'))
-    data.forEach((e) => {
-      if (asignTo == e.name) {
-        console.log(e);
-        e.tasks.push(newTasks)
-        console.log("right");
-        
-
+    const updatedData = userData.map((user) => {
+      if (user.name === assignTo) {
+        return {
+          ...user,
+          tasks: [...user.tasks, newTask],
+        };
       }
-      else{
-        console.log("galat");
-        
-      }
+      return user;
+    });
 
-    })
+    setUserData(updatedData);
+    console.log(userData);
+    
 
-    setTaskTitle('')
-    setTaskDescription('')
-    setTaskDate('')
-    setAsignTo('')
-    setCategory('')
+    // Clear inputs
+    setTitle('');
+    setDescription('');
+    setTaskDate('');
+    setAssignTo('');
+    setCategory('');
+  };
 
-  }
   return (
-    <div className=' px-4 rounded'>
-      <form onSubmit={(e) => SubmitHandler(e)}
-        className='flex flex-wrap w-full bg-transparent items-start justify-between pt-2 ' >
+    <div className='px-4 rounded'>
+      <form onSubmit={handleSubmit} className='flex flex-wrap w-full bg-transparent items-start justify-between pt-2'>
         <div className='w-1/2'>
-          <div >
-            <h3 className='text-sm text-gray-300  m-0.5'>Task Title</h3>
-            <input type="text" placeholder='Stand Up' className='w-4/5 text-sm py-2 px-4 rounded outline-none bg-transparent border-[1px] border-gray-400 mb-4'
+          <div>
+            <h3 className='text-sm text-gray-300 m-0.5'>Task Title</h3>
+            <input
+              type='text'
+              placeholder='Stand Up'
+              className='w-4/5 text-sm py-2 px-4 rounded outline-none bg-transparent border border-gray-400 mb-4'
               value={title}
-              onChange={(e) => setTaskTitle(e.target.value)}
+              onChange={(e) => setTitle(e.target.value)}
             />
           </div>
 
           <div>
-            <h3 className='text-sm text-gray-300  m-0.5'>Date</h3>
-            <input type="date" className='w-4/5 text-sm py-2 px-4 rounded outline-none bg-transparent border-[1px] border-gray-400 mb-4'
+            <h3 className='text-sm text-gray-300 m-0.5'>Date</h3>
+            <input
+              type='date'
+              className='w-4/5 text-sm py-2 px-4 rounded outline-none bg-transparent border border-gray-400 mb-4'
               value={taskDate}
               onChange={(e) => setTaskDate(e.target.value)}
             />
           </div>
 
           <div>
-            <h3 className='text-sm text-gray-300  m-0.5'>Assign To </h3>
-            <input type="text" placeholder='Employee Name' className=' w-4/5 text-sm py-2 px-4 rounded outline-none bg-transparent border-[1px] border-gray-400 mb-4'
-              value={asignTo}
-              onChange={(e) => setAsignTo(e.target.value)}
+            <h3 className='text-sm text-gray-300 m-0.5'>Assign To</h3>
+            <input
+              type='text'
+              placeholder='Employee Name'
+              className='w-4/5 text-sm py-2 px-4 rounded outline-none bg-transparent border border-gray-400 mb-4'
+              value={assignTo}
+              onChange={(e) => setAssignTo(e.target.value)}
             />
           </div>
 
-          <div className=' flex-col items-start'>
-            <h3 className='text-sm text-gray-300  m-0.5'>Catagory</h3>
-            <input type="text" placeholder='Design , Dev , etc..' className=' w-4/5 text-sm py-2 px-4 rounded outline-none bg-transparent border-[1px] border-gray-400 mb-4'
+          <div>
+            <h3 className='text-sm text-gray-300 m-0.5'>Category</h3>
+            <input
+              type='text'
+              placeholder='Design, Dev, etc.'
+              className='w-4/5 text-sm py-2 px-4 rounded outline-none bg-transparent border border-gray-400 mb-4'
               value={category}
               onChange={(e) => setCategory(e.target.value)}
             />
           </div>
-
         </div>
 
-        <div className='w-2/5 flex-col items-start'>
-          <h3 className='text-sm text-gray-300  m-0.5'>Description</h3>
-          <textarea type="textarea" placeholder='Morning at 5Am' className='w-full h-44 text-sm py-2 px-4 rounded outline-none bg-transparent border-[1px] border-gray-400 mb-4'
+        <div className='w-2/5'>
+          <h3 className='text-sm text-gray-300 m-0.5'>Description</h3>
+          <textarea
+            placeholder='Task details...'
+            className='w-full h-44 text-sm py-2 px-4 rounded outline-none bg-transparent border border-gray-400 mb-4'
             value={description}
-            onChange={(e) => setTaskDescription(e.target.value)}
+            onChange={(e) => setDescription(e.target.value)}
           />
-          <button className='bg-emerald-500 hover:bg-emerald-600 px-4 py-5 rounded text-sm mt-2 w-full '>Create Task</button>
+          <button type='submit' className='bg-emerald-500 hover:bg-emerald-600 px-4 py-5 rounded text-sm mt-2 w-full'>
+            Create Task
+          </button>
         </div>
-
-
-
-
-
-
-
       </form>
     </div>
-  )
-}
+  );
+};

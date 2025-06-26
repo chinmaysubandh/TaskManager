@@ -12,7 +12,7 @@ import { data } from "react-router-dom";
 function App() {
   const [user, setUser] = useState(null);
   const [loggedInUser, setLoggedInUser] = useState(null);
-  const AuthData = useContext(AuthContext);
+  const [userData,setUserData] = useContext(AuthContext);
 
   useEffect(() => {
     setLocalStorage();
@@ -24,21 +24,21 @@ function App() {
 
     }
 
-  }, [AuthData])
+  }, [userData])
 
 
 
   const handleLogin = (email, password) => {
-    if (AuthData.admin.find((e) => e.email == email && e.password == password)) {
-      const admin = AuthData.admin.find((e) => e.email == email && e.password == password)
+    if (email == 'admin@example.com' && password == '123') {
+
 
       setUser({ role: 'admin' })
-      localStorage.setItem('loggedInUser', JSON.stringify({ role: 'admin', data: admin }))
+      localStorage.setItem('loggedInUser', JSON.stringify({ role: 'admin' }))
 
     }
-    else if (AuthData) {
+    else if (userData) {
       console.log("Employee login ");
-      const employee = AuthData.employees.find((e) => e.email == email && e.password == password)
+      const employee = userData.find((e) => e.email == email && e.password == password)
       if (employee) {
         setUser('employee')
         setLoggedInUser(employee);
@@ -61,8 +61,8 @@ function App() {
       {user === 'admin' ? <AdminDashboard changeUser={setUser} data={loggedInUser} /> : (user === 'employee' ? <EmployeeDashboard changeUser={setUser} data={loggedInUser} /> : '')}
       {/* {user === 'admin' && loggedInUser && <AdminDashboard changeUser={setUser} data={loggedInUser} />}
       {user === 'employee' && loggedInUser && <EmployeeDashboard changeUser={setUser} data={loggedInUser} />} */}
-      
-      
+
+
     </div>
   );
 }

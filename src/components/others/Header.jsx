@@ -1,8 +1,14 @@
 import React, { useEffect, useState } from 'react'
 
 export const Header = (props) => {
-  const [username, setUserName] = useState(props.data.name);
-
+  const [username, setUserName] = useState('chinmay');
+  useEffect(() => {
+    if (!props.data) {
+      setUserName("Default Admin")
+    } else {
+      setUserName(props.data.name)
+    }
+  },[])
   
 
 
