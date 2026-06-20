@@ -7,10 +7,7 @@ export const Login = ({ handleLogin }) => {
 
     const Submithandler = (e) => {
         e.preventDefault()
-        console.log("Your Email is ", email)
-        console.log("Your Password is ", password)
         handleLogin(email, password);
-
         setEmail('')
         setPassword('')
     }
@@ -19,11 +16,7 @@ export const Login = ({ handleLogin }) => {
             <div className='border-2 border-emerald-600 rounded-2xl px-20 py-18  bg-gray-800 '>
                 <form
 
-                    onSubmit={(e) => {
-                        Submithandler(e)
-                        localStorage.getItem('employees')
-                        window.location.reload();
-                    }}
+                    onSubmit={Submithandler}
                     className='flex flex-col items-center justify-center'>
                     <h3 className='text-4xl text-cyan-600  font-extrabold transition-transform mt-5 mb-10'>Welcome back<span className='text-3xl font-extrabold text-emerald-500'>..</span></h3>
                     <input

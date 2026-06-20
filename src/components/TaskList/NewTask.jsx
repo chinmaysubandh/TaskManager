@@ -1,7 +1,7 @@
 import React from 'react'
 
-const NewTask = ({data}) => {
-  return (
+const NewTask = ({ data, onAccept, onReject }) => {
+    return (
         <div className='h-full w-[300px] bg-blue-900 rounded-xl shrink-0 '>
             <div className='flex justify-between items-center mt-4 m-4'>
                 <h2 className='bg-red-600  rounded-2xl py-1 px-5 text-sm font-medium'>{data.category}</h2>
@@ -12,8 +12,8 @@ const NewTask = ({data}) => {
                 <p className='text-sm mt-2'>Description:{data.description}</p>
             </div>
             <div className='flex justify-evenly mt-2'>
-                <button className='bg-green-800 ring-1 hover:bg-green-500 mx-3 my-2 px-4 py-2 rounded-4xl text-sm font-bold'>Accept Task</button>
-                <button className='bg-red-800 ring-1 hover:bg-red-500 mx-3 my-2 px-4 py-2  rounded-full text-sm font-bold'>Reject Task</button>
+                <button onClick={onAccept} className='bg-green-800 ring-1 hover:bg-green-500 mx-3 my-2 px-4 py-2 rounded-4xl text-sm font-bold'>Accept Task</button>
+                <button onClick={onReject} className='bg-red-800 ring-1 hover:bg-red-500 mx-3 my-2 px-4 py-2  rounded-full text-sm font-bold'>Reject Task</button>
             </div>
         </div>
     )
